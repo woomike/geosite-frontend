@@ -1,10 +1,21 @@
 .mapMarker {
+  width: 150px;
+}
+
+.mapMarkerImg {
   cursor: pointer;
   height: 25px;
   width: 25px;
 }
 
-.hoveredMapMarker {
+.mapMarkerImgHovered {
   height: 35px;
   width: 35px;
+}
+
+
+.mapMarker p {
+  margin: 5px 0 0 0;
+  font-size: 1.25em;
+  color: tomato;
 }

@@ -4,35 +4,75 @@ import Map from './components/Map'
 import { losAngelesCoordinates,
   workCoordinates,
   residenceCoordinates } from './data'
+const DEFAULT_ZOOM_VALUE = 11
 
 export default class App extends Component {
   initialState = {
-    center: {
-      lat: losAngelesCoordinates.lat,
-      lng: losAngelesCoordinates.lng
-    },
-    zoom: 11
+    defaultCenter: losAngelesCoordinates,
+    center: losAngelesCoordinates,
+    defaultZoom: DEFAULT_ZOOM_VALUE,
+    currentMarkerLocationKey: '',
   }
   state = this.initialState
-  handleWorkNavItemClick = (type) => {
 
+  handleWorkClick = (type) => {
+    const center = this.getWorkLocationCoordinates(type)
+    this.setState({center, currentMarkerLocationKey: type})
   }
-  handleResidenceNavItemClick = (type) => {
+  handleResidenceClick = (type) => {
+    const center = this.getResidenceLocationCoordinates(type)
+    this.setState({center, currentMarkerLocationKey: type})
+  }
+  handleHomeClick = () => {
+    const center = losAngelesCoordinates
+    this.setState({center, currentMarkerLocationKey: ''})
+  }
 
+  getWorkLocationCoordinates = (type) => {
+    switch (type) {
+      case 'ATOMRAIN':
+        return workCoordinates.atomRain
+      case 'WILDEBEEST':
+        return workCoordinates.wildebeest
+      case 'SANGUINE':
+        return workCoordinates.sanguine
+      default:
+        return losAngelesCoordinates
+    }
+  }
+  getResidenceLocationCoordinates = (type) => {
+    switch (type) {
+      case 'PA':
+        return residenceCoordinates.paloAlto
+      case 'WLA':
+        return residenceCoordinates.westLosAngeles
+      case 'MPK':
+        return residenceCoordinates.montereyPark
+      default:
+        return losAngelesCoordinates
+    }
+  }
+
+  handleMarkerClick = (id, markerProps) => {
+    const center = {lat: markerProps.lat, lng: markerProps.lng}
+    this.setState({center, currentMarkerLocationKey: markerProps.locationKey})
   }
 
   render () {
     return (
       <div>
         <GeositeNavBar
-          handleWorkNavItemClick={this.handleWorkNavItemClick}
-          handleResidenceNavItemClick={this.handleResidenceNavItemClick}
+          handleWorkClick={this.handleWorkClick}
+          handleResidenceClick={this.handleResidenceClick}
+          handleHomeClick={this.handleHomeClick}
         />
         <Map
+          defaultCenter={this.state.defaultCenter}
+          defaultZoom={this.state.defaultZoom}
           center={this.state.center}
-          zoom={this.state.zoom}
           workCoordinates={workCoordinates}
           residenceCoordinates={residenceCoordinates}
+          handleMarkerClick={this.handleMarkerClick}
         />
       </div>
     )

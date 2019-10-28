@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -6,60 +7,58 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
-export default class GeositeNavBar extends Component {
+export default function GeositeNavBar(props) {
 
-  handleAtomRainClick = () => { this.props.handleWorkNavItemClick('ATOMRAIN') }
-  handleWildebeestClick = () => {
-    this.props.handleWorkNavItemClick('WILDEBEEST')
-  }
-  handleSanguineClick = () => { this.props.handleWorkNavItemClick('SANGUINE') }
-  handlePaloAltoClick = () => {
-    this.props.handleResidenceNavItemClick('PA')
-  }
-  handleWestLosAngelesClick = () => {
-    this.props.handleResidenceNavItemClick('WLA')
-  }
-  handleMontereyParkClick = () => {
-    this.props.handleResidenceNavItemClick('MPK')
-  }
+  function handleAtomRainClick() { props.handleWorkClick('ATOMRAIN') }
+  function handleWildebeestClick() { props.handleWorkClick('WILDEBEEST') }
+  function handleSanguineClick() { props.handleWorkClick('SANGUINE') }
+  function handlePaloAltoClick() { props.handleResidenceClick('PA') }
+  function handleWestLosAngelesClick() { props.handleResidenceClick('WLA') }
+  function handleMontereyParkClick() { props.handleResidenceClick('MPK') }
 
-  render () {
-    return (
-      <Navbar bg='light' expand='lg'>
-        <Navbar.Brand href='#home'>Mike Woo's Places of Interest</Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='mr-auto'>
+  return (
+    <Navbar bg='light' expand='lg'>
+      <Navbar.Brand href='#home'>Mike Woo's Places of Interest</Navbar.Brand>
+      <Navbar.Toggle aria-controls='basic-navbar-nav' />
+      <Navbar.Collapse id='basic-navbar-nav'>
+        <Nav className='mr-auto'>
+          <div onClick={props.handleHomeClick}>
             <Nav.Link>Home</Nav.Link>
-            <NavDropdown title='Work' id='basic-nav-dropdown'>
-              <div onClick={this.handleAtomRainClick}>
-                <NavDropdown.Item>Atom Rain</NavDropdown.Item>
-              </div>
-              <div onClick={this.handleWildebeestClick}>
-                <NavDropdown.Item>Wildebeest Design & Development</NavDropdown.Item>
-              </div>
-              <div onClick={this.handleSanguineClick}>
-                <NavDropdown.Item>Sanguine Biosciences</NavDropdown.Item>
-              </div>
-            </NavDropdown>
-            <NavDropdown title='Residences' id='basic-nav-dropdown'>
-              <div onClick={this.handlePaloAltoClick}>
-                <NavDropdown.Item>Palo Alto</NavDropdown.Item>
-              </div>
-              <div onClick={this.handleWestLosAngelesClick}>
-                <NavDropdown.Item>West Los Angeles</NavDropdown.Item>
-              </div>
-              <div onClick={this.handleMontereyParkClick}>
-                <NavDropdown.Item>Monterey Park</NavDropdown.Item>
-              </div>
-            </NavDropdown>
-          </Nav>
-          <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2' />
-            <Button variant='outline-success'>Search</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Navbar>
-    )
-  }
+          </div>
+          <NavDropdown title='Work' id='basic-nav-dropdown'>
+            <div onClick={handleAtomRainClick}>
+              <NavDropdown.Item>Atom Rain</NavDropdown.Item>
+            </div>
+            <div onClick={handleWildebeestClick}>
+              <NavDropdown.Item>Wildebeest Design & Development</NavDropdown.Item>
+            </div>
+            <div onClick={handleSanguineClick}>
+              <NavDropdown.Item>Sanguine Biosciences</NavDropdown.Item>
+            </div>
+          </NavDropdown>
+          <NavDropdown title='Residences' id='basic-nav-dropdown'>
+            <div onClick={handlePaloAltoClick}>
+              <NavDropdown.Item>Palo Alto</NavDropdown.Item>
+            </div>
+            <div onClick={handleWestLosAngelesClick}>
+              <NavDropdown.Item>West Los Angeles</NavDropdown.Item>
+            </div>
+            <div onClick={handleMontereyParkClick}>
+              <NavDropdown.Item>Monterey Park</NavDropdown.Item>
+            </div>
+          </NavDropdown>
+        </Nav>
+        <Form inline>
+          <FormControl type='text' placeholder='Search' className='mr-sm-2' />
+          <Button variant='outline-success'>Search</Button>
+        </Form>
+      </Navbar.Collapse>
+    </Navbar>
+  )
+}
+
+GeositeNavBar.propTypes = {
+  handleWorkClick: PropTypes.func.isRequired,
+  handleResidenceClick: PropTypes.func.isRequired,
+  handleHomeClick: PropTypes.func.isRequired
 }

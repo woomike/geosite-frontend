@@ -5,17 +5,23 @@ import cx from 'classnames'
 import './MapMarker.css'
 
 export default function MapMarker(props) {
-  const mapMarkerStyles = cx({
-    mapMarker: true,
-    hoveredMapMarker: props.$hover
+  const mapMarkerImgStyles = cx({
+    mapMarkerImg: true,
+    mapMarkerImgHovered: props.$hover
   })
   return (
-    <img className={mapMarkerStyles} src={MapMarkerPNG} alt={'Map Marker'} />
+    <div className={'mapMarker'}>
+      <img
+        className={mapMarkerImgStyles}
+        src={MapMarkerPNG}
+        alt={props.text} />
+      <p>{props.text}</p>
+    </div>
   )
 }
 
 MapMarker.propTypes = {
   // $hover comes from GoogleMapReact
   $hover: PropTypes.bool,
-  handleClick: PropTypes.func.isRequired
+  text: PropTypes.string
 }
