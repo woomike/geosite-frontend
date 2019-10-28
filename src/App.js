@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Geosite Frontend
+        Areas of Interest
       </header>
       <div className="main-container">
         <Navigation />
