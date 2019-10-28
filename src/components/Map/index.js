@@ -3,14 +3,6 @@ import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker'
 
 class Map extends Component {
-  static defaultProps = {
-    center: {
-      lat: 34.05,
-      lng: -118.24
-    },
-    zoom: 11
-  };
-
   render() {
     return (
       <div style={{height: '90vh', width: '100%' }}>

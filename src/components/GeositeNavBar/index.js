@@ -7,6 +7,22 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
 export default class GeositeNavBar extends Component {
+
+  handleAtomRainClick = () => { this.props.handleWorkNavItemClick('ATOMRAIN') }
+  handleWildebeestClick = () => {
+    this.props.handleWorkNavItemClick('WILDEBEEST')
+  }
+  handleSanguineClick = () => { this.props.handleWorkNavItemClick('SANGUINE') }
+  handlePaloAltoClick = () => {
+    this.props.handleResidenceNavItemClick('PA')
+  }
+  handleWestLosAngelesClick = () => {
+    this.props.handleResidenceNavItemClick('WLA')
+  }
+  handleMontereyParkClick = () => {
+    this.props.handleResidenceNavItemClick('MPK')
+  }
+
   render () {
     return (
       <Navbar bg='light' expand='lg'>
@@ -16,14 +32,26 @@ export default class GeositeNavBar extends Component {
           <Nav className='mr-auto'>
             <Nav.Link>Home</Nav.Link>
             <NavDropdown title='Work' id='basic-nav-dropdown'>
-              <NavDropdown.Item>Atom Rain</NavDropdown.Item>
-              <NavDropdown.Item>Wildebeest Design & Development</NavDropdown.Item>
-              <NavDropdown.Item>Sanguine Biosciences</NavDropdown.Item>
+              <div onClick={this.handleAtomRainClick}>
+                <NavDropdown.Item>Atom Rain</NavDropdown.Item>
+              </div>
+              <div onClick={this.handleWildebeestClick}>
+                <NavDropdown.Item>Wildebeest Design & Development</NavDropdown.Item>
+              </div>
+              <div onClick={this.handleSanguineClick}>
+                <NavDropdown.Item>Sanguine Biosciences</NavDropdown.Item>
+              </div>
             </NavDropdown>
             <NavDropdown title='Residences' id='basic-nav-dropdown'>
-              <NavDropdown.Item>Palo Alto</NavDropdown.Item>
-              <NavDropdown.Item>West Los Angeles</NavDropdown.Item>
-              <NavDropdown.Item>Monterey Park</NavDropdown.Item>
+              <div onClick={this.handlePaloAltoClick}>
+                <NavDropdown.Item>Palo Alto</NavDropdown.Item>
+              </div>
+              <div onClick={this.handleWestLosAngelesClick}>
+                <NavDropdown.Item>West Los Angeles</NavDropdown.Item>
+              </div>
+              <div onClick={this.handleMontereyParkClick}>
+                <NavDropdown.Item>Monterey Park</NavDropdown.Item>
+              </div>
             </NavDropdown>
           </Nav>
           <Form inline>
