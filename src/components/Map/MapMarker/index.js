@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import MapMarkerPNG from './map-marker.png'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import cx from 'classnames'
+import './MapMarker.css'
 
 export default class MapMarker extends Component {
   render() {
-    // $hover comes from GoogleMapReact
-    const style = this.props.$hover ? {width: '35px', height: '35px'} : {width: '25px', height: '25px'}
+    const mapMarkerStyles = cx({
+      mapMarker: true,
+      hoveredMapMarker: this.props.$hover
+    })
     return (
-      <img style={style} src={MapMarkerPNG} alt={'Map Marker'} />
+      <img className={mapMarkerStyles} src={MapMarkerPNG} alt={'Map Marker'} />
     )
-  }
+}
 }
 
 React.propTypes = {
+  // $hover comes from GoogleMapReact
   $hover: PropTypes.bool
 }
