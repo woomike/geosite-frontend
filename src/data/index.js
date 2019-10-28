@@ -5,8 +5,8 @@ export const losAngelesCoordinates = {
 
 export const workCoordinates = {
   atomRain: {
-    lat: 37.442788,
-    lng: -122.139112
+    lat: 34.021233,
+    lng: -118.481437
   },
   wildebeest: {
     lat: 33.972629,
@@ -15,6 +15,10 @@ export const workCoordinates = {
   sanguine: {
     lat: 34.161795,
     lng: -118.448313
+  },
+  bar: {
+    lat: 35.442788,
+    lng: -120.139112
   }
 }
 
